@@ -15,8 +15,7 @@ public class Seat {
 
     //@ requires row>= MIN_ROW & row <=MAX_ROW
     //@ requires MIN_NUMBER<=number & number<=MAX_NUMBER
-    //@ ensures this.row>= MIN_ROW & this.row <=MAX_ROW
-    //@ ensures MIN_NUMBER<=this.number & this.number<=MAX_NUMBER
+    //@ ensures this.row==row  && this.number==number 
     public Seat(char row, int number) {
         this.row = row;
         this.number = number;
