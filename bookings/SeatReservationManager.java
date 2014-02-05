@@ -29,7 +29,7 @@ public class SeatReservationManager {
 
 
     //@ requires \typeof(c)<: \elemtype(\typeof(seatReservations));
-    public void reserve(/*@ non_null*/Seat  s, /*@ non_null*/Customer c)
+    public void reserve(/*@ non_null*/Seat  s, Customer c)
             throws ReservationException {
         //@ assume (init== true);
         if(isReserved(s)) {
@@ -51,7 +51,7 @@ public class SeatReservationManager {
     }
 
     //@ requires \typeof(c)<: \elemtype(\typeof(seatReservations));
-    //@ requires c!=null
+
     public void reserveNextFree(Customer c) throws ReservationException {
         //@ assume (init== true);
         for(int rowIndex = 0; rowIndex < seatReservations.length; rowIndex++) {
