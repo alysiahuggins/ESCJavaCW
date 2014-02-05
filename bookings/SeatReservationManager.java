@@ -4,7 +4,7 @@ public class SeatReservationManager {
 
     private final Customer[][] seatReservations;
 
-    //@ ghost public boolean init= true;
+    //@ ghost public boolean init;
     //@ invariant init ==> (seatReservations.length==Seat.MAX_ROW-Seat.MIN_ROW+1 && (\forall int i; 0<=i && i<Seat.MAX_ROW-Seat.MIN_ROW+1 ==> seatReservations[i].length==Seat.MAX_NUMBER-Seat.MIN_NUMBER+1))
     //@ invariant \nonnullelements(seatReservations);
 
@@ -52,7 +52,7 @@ public class SeatReservationManager {
 
     //@ requires \typeof(c)<: \elemtype(\typeof(seatReservations));
     //@ requires c!=null
-    public void reserveNextFree(/* non_null */Customer c) throws ReservationException {
+    public void reserveNextFree(Customer c) throws ReservationException {
         //@ assume (init== true);
         for(int rowIndex = 0; rowIndex < seatReservations.length; rowIndex++) {
             for(int numberIndex = 0;
@@ -68,9 +68,9 @@ public class SeatReservationManager {
         }
 
         throw new ReservationException();
-    }//@ nowarn Exception
+    }
 
-
+    
     /*@ ghost String toStringResult; in privateState;
         represents theString <- toStringResult;
 @*/
