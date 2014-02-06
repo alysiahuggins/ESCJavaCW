@@ -4,9 +4,10 @@ public class SeatReservationManager {
 
     private final Customer[][] seatReservations;
 
-    //@ ghost public boolean init;
-    //@ invariant init ==> (seatReservations.length==Seat.MAX_ROW-Seat.MIN_ROW+1 && (\forall int i; 0<=i && i<Seat.MAX_ROW-Seat.MIN_ROW+1 ==> seatReservations[i].length==Seat.MAX_NUMBER-Seat.MIN_NUMBER+1))
     //@ invariant \nonnullelements(seatReservations);
+    //@ ghost public boolean init;
+    //@ invariant init ==> (seatReservations.length==Seat.MAX_ROW-Seat.MIN_ROW+1 && (\forall int i; 0<=i && i<Seat.MAX_ROW-Seat.MIN_ROW+1 ==> seatReservations[i].length==Seat.MAX_NUMBER-Seat.MIN_NUMBER+1));
+    //@ invariant init ==> \type(Customer)<: \elemtype(\typeof(seatReservations));
 
 
 
@@ -28,7 +29,6 @@ public class SeatReservationManager {
 
 
 
-    //@ requires \typeof(c)<: \elemtype(\typeof(seatReservations));
     public void reserve(/*@ non_null*/Seat  s, Customer c)
             throws ReservationException {
         //@ assume (init== true);
@@ -50,7 +50,7 @@ public class SeatReservationManager {
                 [numberToIndex(s.getNumber())] = null;
     }
 
-    //@ requires \typeof(c)<: \elemtype(\typeof(seatReservations));
+
 
     public void reserveNextFree(Customer c) throws ReservationException {
         //@ assume (init== true);
